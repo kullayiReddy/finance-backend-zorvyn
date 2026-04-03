@@ -1,0 +1,214 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║                    🚀 HOW TO RUN THE PROJECT 🚀                               ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+LOCATION: C:\Users\saida\Finance\
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP-BY-STEP INSTRUCTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Open Command Prompt or PowerShell
+────────────────────────────────────────────────────────────────────────────────
+Press: Windows + R
+Type: cmd
+Press: Enter
+
+Or: Right-click on desktop → Open Command Prompt / PowerShell
+
+
+STEP 2: Navigate to Project Directory
+────────────────────────────────────────────────────────────────────────────────
+Type this command:
+
+    cd C:\Users\saida\Finance
+
+Press: Enter
+
+
+STEP 3: Install Python Dependencies
+────────────────────────────────────────────────────────────────────────────────
+Type this command:
+
+    pip install -r requirements_new.txt
+
+Wait for it to complete (2-3 minutes)
+
+You should see: "Successfully installed ..." at the end
+
+
+STEP 4: Create Admin Users
+────────────────────────────────────────────────────────────────────────────────
+Type this command:
+
+    python setup_admin_correct.py
+
+You should see:
+    ✓ Database initialized
+    ✓ Admin user created!
+    ✓ Analyst user created!
+    ✓ Viewer user created!
+
+
+STEP 5: Start the Server
+────────────────────────────────────────────────────────────────────────────────
+Type this command:
+
+    python main_fixed.py
+
+You should see:
+    ╔════════════════════════════════════════════════════════╗
+    ║       Finance Dashboard Backend Server Starting       ║
+    ...
+    INFO:     Uvicorn running on http://127.0.0.1:8000
+
+✅ SERVER IS RUNNING!
+
+
+STEP 6: Open the API Documentation
+────────────────────────────────────────────────────────────────────────────────
+Open your web browser (Chrome, Firefox, Edge, etc.)
+
+Go to: http://localhost:8000/docs
+
+You should see the Swagger UI with all API endpoints
+
+
+STEP 7: Login and Test
+────────────────────────────────────────────────────────────────────────────────
+In the Swagger UI:
+
+1. Scroll down to the "Authentication" section
+2. Click on "POST /api/v1/auth/login"
+3. Click "Try it out"
+4. Enter these credentials:
+   Email: admin@example.com
+   Password: admin123
+5. Click "Execute"
+6. Copy the "access_token" from the response
+7. Scroll back up and click the green "Authorize" button
+8. Paste the token and click "Authorize"
+9. Now you can test any endpoint!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TEST USERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADMIN (Full Access):
+  Email: admin@example.com
+  Password: admin123
+
+ANALYST (Read Records + Analytics):
+  Email: analyst@example.com
+  Password: analyst123
+
+VIEWER (Read-Only):
+  Email: viewer@example.com
+  Password: viewer123
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXAMPLE API CALLS (After Login)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To test with cURL (from Command Prompt):
+
+1. LOGIN:
+   curl -X POST http://localhost:8000/api/v1/auth/login ^
+     -H "Content-Type: application/json" ^
+     -d "{\"email\":\"admin@example.com\",\"password\":\"admin123\"}"
+
+2. CREATE RECORD (replace TOKEN with your access_token):
+   curl -X POST http://localhost:8000/api/v1/records/ ^
+     -H "Authorization: Bearer TOKEN" ^
+     -H "Content-Type: application/json" ^
+     -d "{\"amount\":5000,\"type\":\"income\",\"category\":\"Salary\"}"
+
+3. VIEW DASHBOARD:
+   curl -X GET http://localhost:8000/api/v1/dashboard/summary ^
+     -H "Authorization: Bearer TOKEN"
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+USEFUL LINKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+API Documentation (Swagger UI):
+  http://localhost:8000/docs
+
+Alternative Documentation (ReDoc):
+  http://localhost:8000/redoc
+
+Health Check:
+  http://localhost:8000/health
+
+API Root:
+  http://localhost:8000/
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STOPPING THE SERVER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In the Command Prompt where server is running:
+
+Press: Ctrl + C
+
+The server will stop.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DOCUMENTATION FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For detailed information, read these files:
+
+1. README_FINAL.txt          - Quick overview
+2. README_NEW.md             - Complete project details
+3. SETUP_GUIDE.md            - Setup instructions
+4. ARCHITECTURE.md           - Technical architecture
+5. API_REQUESTS.md           - Sample API requests
+6. INTERVIEW_GUIDE.md        - Interview tips
+
+Open these files in any text editor or IDE.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM: "pip: command not found"
+SOLUTION: Install Python from https://www.python.org
+          Make sure to check "Add Python to PATH" during installation
+
+PROBLEM: "ModuleNotFoundError: No module named 'fastapi'"
+SOLUTION: Run: pip install -r requirements_new.txt
+          Make sure you're in C:\Users\saida\Finance directory
+
+PROBLEM: "Port 8000 already in use"
+SOLUTION: Either:
+          1. Close the program using port 8000
+          2. Or run: python main_fixed.py --port 8001
+
+PROBLEM: Database errors
+SOLUTION: Delete finance.db file and run setup again:
+          del finance.db
+          python setup_admin_correct.py
+
+PROBLEM: Still having issues?
+SOLUTION: Read SETUP_GUIDE.md file - it has a troubleshooting section
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ YOU'RE ALL SET!
+
+Follow the steps above to run the project. You should have a working
+Finance Dashboard Backend in 5 minutes!
+
+Questions? Read the documentation files or check README_FINAL.txt
+
+Good luck! 🚀

@@ -1,0 +1,96 @@
+═══════════════════════════════════════════════════════════════════════════════════
+                        ✅ HOW TO RUN THE PROJECT ✅
+═══════════════════════════════════════════════════════════════════════════════════
+
+PROJECT LOCATION: C:\Users\saida\Finance\
+
+───────────────────────────────────────────────────────────────────────────────────
+SIMPLE 3-STEP STARTUP
+───────────────────────────────────────────────────────────────────────────────────
+
+STEP 1: Install Dependencies
+   Open Command Prompt or PowerShell in C:\Users\saida\Finance\
+   
+   Run:  pip install -r requirements.txt
+
+STEP 2: Create Admin Users
+   Run:  python setup_admin_correct.py
+   
+   Expected Output:
+     ✓ Database initialized
+     ✓ Admin user created!
+     ✓ Analyst user created!
+     ✓ Viewer user created!
+
+STEP 3: Start Server
+   Run:  python -m src
+   
+   Expected Output:
+     INFO:     Uvicorn running on http://127.0.0.1:8000
+
+
+───────────────────────────────────────────────────────────────────────────────────
+THAT'S IT! SERVER IS RUNNING!
+───────────────────────────────────────────────────────────────────────────────────
+
+Open your browser and go to: http://localhost:8000/docs
+
+
+───────────────────────────────────────────────────────────────────────────────────
+LOGIN CREDENTIALS
+───────────────────────────────────────────────────────────────────────────────────
+
+Admin User:
+  Email: admin@example.com
+  Password: admin123
+
+Analyst User:
+  Email: analyst@example.com
+  Password: analyst123
+
+Viewer User:
+  Email: viewer@example.com
+  Password: viewer123
+
+
+───────────────────────────────────────────────────────────────────────────────────
+TESTING THE API
+───────────────────────────────────────────────────────────────────────────────────
+
+In Swagger UI (http://localhost:8000/docs):
+
+1. Scroll to "POST /api/v1/auth/login"
+2. Click "Try it out"
+3. Enter credentials:
+   {
+     "email": "admin@example.com",
+     "password": "admin123"
+   }
+4. Click "Execute"
+5. Copy the "access_token"
+6. Click green "Authorize" button at top
+7. Paste token
+8. Now test any endpoint!
+
+
+───────────────────────────────────────────────────────────────────────────────────
+USEFUL LINKS
+───────────────────────────────────────────────────────────────────────────────────
+
+API Docs (Swagger):      http://localhost:8000/docs
+Alternative Docs (ReDoc): http://localhost:8000/redoc
+Health Check:            http://localhost:8000/health
+API Root:                http://localhost:8000/
+
+
+───────────────────────────────────────────────────────────────────────────────────
+STOPPING THE SERVER
+───────────────────────────────────────────────────────────────────────────────────
+
+In the Command Prompt where server is running:
+Press: Ctrl + C
+
+
+═══════════════════════════════════════════════════════════════════════════════════
+                            🎉 YOU'RE READY! 🎉
+═══════════════════════════════════════════════════════════════════════════════════
